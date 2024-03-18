@@ -9,6 +9,10 @@ importers:
   .: {}
 
   apps/ui:
+    dependencies:
+      tinybase:
+        specifier: ^4.7.1
+        version: 4.7.1(prettier@3.2.5)
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^3.0.0
@@ -1879,7 +1883,6 @@ packages:
     resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
     engines: {node: '>=14'}
     hasBin: true
-    dev: true
 
   /pretty-format@29.7.0:
     resolution: {integrity: sha512-Pdlw/oPxN+aXdmM9R00JVC9WVFoCLTKJvDVLgmJ+qAffBMxsV85l/Lu7sNx4zSzPyoL2euImuEwHhOXdEgNFZQ==}
@@ -2217,6 +2220,54 @@ packages:
       globalyzer: 0.1.0
       globrex: 0.1.2
     dev: true
+
+  /tinybase@4.7.1(prettier@3.2.5):
+    resolution: {integrity: sha512-YtmE6yg9RgagR1ULxvI//7ladsVv0P5Ase4twBAS7aZQMrexKONJtHo/iH/KP7G5kZzX06fdBdnBKsVPw9RwaQ==}
+    hasBin: true
+    peerDependencies:
+      '@automerge/automerge-repo': ^1.1.2
+      '@libsql/client': ^0.5.6
+      '@sqlite.org/sqlite-wasm': ^3.45.2-build1
+      '@vlcn.io/crsqlite-wasm': ^0.16.0
+      electric-sql: ^0.9.6
+      expo-sqlite: ^13.2.1
+      partykit: ^0.0.99
+      partysocket: ^1.0.1
+      prettier: ^3.2.5
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      sqlite3: ^5.1.7
+      yjs: ^13.6.14
+    peerDependenciesMeta:
+      '@automerge/automerge-repo':
+        optional: true
+      '@libsql/client':
+        optional: true
+      '@sqlite.org/sqlite-wasm':
+        optional: true
+      '@vlcn.io/crsqlite-wasm':
+        optional: true
+      electric-sql:
+        optional: true
+      expo-sqlite:
+        optional: true
+      partykit:
+        optional: true
+      partysocket:
+        optional: true
+      prettier:
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      sqlite3:
+        optional: true
+      yjs:
+        optional: true
+    dependencies:
+      prettier: 3.2.5
+    dev: false
 
   /tinybench@2.6.0:
     resolution: {integrity: sha512-N8hW3PG/3aOoZAN5V/NSAEDz0ZixDSSt5b/a05iqtpgfLWMSVuCo7w0k2vVvEjdrIoeGqZzweX2WlyioNIHchA==}
