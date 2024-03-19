@@ -1,20 +1,76 @@
 <script lang="ts">
-	import { store, persister } from '$lib/stores/expenses';
+	import { store } from '$lib/stores/expenses';
 	import { onMount } from 'svelte';
 
-	onMount(async () => {
-		await persister.load();
-		// store.setValues({ name: 'test', amount: 100 });
-		// store.setTables({ pets: { fido: { species: 'dog', age: 3 } } });
-		console.log('store.getValues()', store.getValues());
-		// store.setValue('name', 'test2');
-		console.log('store.getValues()', store.getValues());
-		// store.setValues({ name: 'woalo', amount: 13000 });
-		console.log('store.getValues()', store.getValues());
-		console.log('store.getTables()', store.getTables());
-		// await persister.save();
+	let expenses = store.getTable('expenses');
+
+	const onSubmit = (evt: SubmitEvent) => {
+		const target = evt.target as HTMLFormElement;
+		const formData = new FormData(target);
+		const amount = formData.get('amount');
+		const description = formData.get('description') as string;
+
+		store.addRow('expenses', {
+			amount: Number(amount),
+			description
+		});
+
+		target.reset();
+	};
+
+	onMount(() => {
+		const listener = store.addTableListener('expenses', (store) => {
+			expenses = store.getTable('expenses');
+		});
+
+		return () => {
+			store.delListener(listener);
+		};
 	});
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<main>
+	<h1>Expenses</h1>
+
+	<form on:submit|preventDefault={onSubmit}>
+		<label>
+			<span>Amount</span>
+			<input type="number" name="amount" required />
+		</label>
+
+		<label>
+			<span>Description</span>
+			<textarea name="description"></textarea>
+		</label>
+
+		<button type="submit">Add</button>
+	</form>
+
+	<p>List of expenses</p>
+
+	<ul>
+		{#each Object.keys(expenses) as expense (expense)}
+			<li>
+				<span>Amount: {expenses[expense].amount}</span>
+				<span>Description: {expenses[expense].description}</span>
+			</li>
+		{/each}
+	</ul>
+</main>
+
+<style>
+	label {
+		display: block;
+		margin-bottom: 1rem;
+	}
+
+	label span {
+		display: block;
+		margin-bottom: 0.5rem;
+	}
+
+	li {
+		display: flex;
+		flex-direction: column;
+	}
+</style>
