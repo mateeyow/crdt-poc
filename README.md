@@ -5,6 +5,6 @@ POC for offline applications
 TODO:
 
 - [x] - Work with Svelte
-- [ ] - Offline mode
+- [x] - Offline mode
 - [ ] - Android/iOS support (Capacitor)
 - [ ] - Sync to backend

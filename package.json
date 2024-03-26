@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev:ui": "pnpm --filter ui run dev",
+    "build:ui": "pnpm --filter ui run build",
+    "start:ui": "pnpm --filter ui run preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
