@@ -37,6 +37,10 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@capacitor/android": "^5.7.4",
+		"@capacitor/cli": "^5.7.4",
+		"@capacitor/core": "^5.7.4",
+		"@capacitor/ios": "^5.7.4",
 		"tinybase": "^4.7.1"
 	}
 }

@@ -6,5 +6,5 @@ TODO:
 
 - [x] - Work with Svelte
 - [x] - Offline mode
-- [ ] - Android/iOS support (Capacitor)
+- [x] - Android/iOS support (Capacitor)
 - [ ] - Sync to backend
