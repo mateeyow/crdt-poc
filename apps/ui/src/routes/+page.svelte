@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { store } from '$lib/stores/expenses';
+	import { store, dbPersister, remotePersister } from '$lib/stores/expenses';
 	import { onMount } from 'svelte';
 
 	let expenses = store.getTable('expenses');
 
-	const onSubmit = (evt: SubmitEvent) => {
+	const onSubmit = async (evt: SubmitEvent) => {
 		const target = evt.target as HTMLFormElement;
 		const formData = new FormData(target);
 		const amount = formData.get('amount');
@@ -14,11 +14,19 @@
 			amount: Number(amount),
 			description
 		});
+		await dbPersister.save();
+		await remotePersister.save();
 
 		target.reset();
 	};
 
 	onMount(() => {
+		async function loadData() {
+			await remotePersister.load();
+			await dbPersister.load();
+		}
+
+		loadData();
 		const listener = store.addTableListener('expenses', (store) => {
 			expenses = store.getTable('expenses');
 		});

@@ -5,11 +5,15 @@
   "main": "index.js",
   "scripts": {
     "dev:ui": "pnpm --filter ui run dev",
+    "dev:server": "pnpm --filter server run dev",
     "build:ui": "pnpm --filter ui run build",
     "start:ui": "pnpm --filter ui run preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "volta": {
+    "node": "20.12.0"
+  }
 }
