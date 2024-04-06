@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { store, dbPersister, remotePersister } from '$lib/stores/expenses';
+	import { store, dbPersister, remotePersister, yjsPersister, doc } from '$lib/stores/expenses';
 	import { onMount } from 'svelte';
+	import dayjs from 'dayjs';
 
 	let expenses = store.getTable('expenses');
 
@@ -10,20 +11,29 @@
 		const amount = formData.get('amount');
 		const description = formData.get('description') as string;
 
-		store.addRow('expenses', {
+		store.setRow('expenses', crypto.randomUUID(), {
 			amount: Number(amount),
-			description
+			description,
+			date: Date.now()
 		});
-		await dbPersister.save();
-		await remotePersister.save();
+		await yjsPersister.save();
+		// await dbPersister.save();
+		// await remotePersister.save();
 
+		console.log('doc.toJSON()', doc.toJSON());
 		target.reset();
+	};
+
+	const parseDate = (date?: number) => {
+		if (!date) return '';
+
+		return dayjs(date).format('MMMM DD YYYY HH:mm');
 	};
 
 	onMount(() => {
 		async function loadData() {
-			await remotePersister.load();
-			await dbPersister.load();
+			// await remotePersister.load();
+			// await dbPersister.load();
 		}
 
 		loadData();
@@ -61,6 +71,7 @@
 			<li>
 				<span>Amount: {expenses[expense].amount}</span>
 				<span>Description: {expenses[expense].description}</span>
+				<span>Date: {parseDate(expenses[expense].date)}</span>
 			</li>
 		{/each}
 	</ul>

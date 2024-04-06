@@ -3,6 +3,7 @@ import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
 import { createClient } from 'redis';
+import * as Y from 'yjs';
 
 const redisClient = createClient();
 

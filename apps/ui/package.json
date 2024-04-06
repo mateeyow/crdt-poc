@@ -21,8 +21,10 @@
 		"@typescript-eslint/eslint-plugin": "^7.0.0",
 		"@typescript-eslint/parser": "^7.0.0",
 		"@vite-pwa/sveltekit": "^0.4.0",
+		"dayjs": "^1.11.10",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-only-warn": "^1.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
@@ -33,7 +35,8 @@
 		"vite": "^5.0.3",
 		"vite-plugin-pwa": "^0.19.7",
 		"vitest": "^1.2.0",
-		"workbox-window": "^7.0.0"
+		"workbox-window": "^7.0.0",
+		"yjs": "^13.6.14"
 	},
 	"type": "module",
 	"dependencies": {

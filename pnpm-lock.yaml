@@ -16,6 +16,9 @@ importers:
       hono:
         specifier: ^4.1.5
         version: 4.1.5
+      yjs:
+        specifier: ^13.6.14
+        version: 13.6.14
     devDependencies:
       '@types/node':
         specifier: ^20.11.17
@@ -43,7 +46,7 @@ importers:
         version: 5.7.4(@capacitor/core@5.7.4)
       tinybase:
         specifier: ^4.7.1
-        version: 4.7.1(prettier@3.2.5)
+        version: 4.7.1(prettier@3.2.5)(yjs@13.6.14)
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^3.0.0
@@ -69,12 +72,18 @@ importers:
       '@vite-pwa/sveltekit':
         specifier: ^0.4.0
         version: 0.4.0(@sveltejs/kit@2.5.4)(vite-plugin-pwa@0.19.7)
+      dayjs:
+        specifier: ^1.11.10
+        version: 1.11.10
       eslint:
         specifier: ^8.56.0
         version: 8.57.0
       eslint-config-prettier:
         specifier: ^9.1.0
         version: 9.1.0(eslint@8.57.0)
+      eslint-plugin-only-warn:
+        specifier: ^1.1.0
+        version: 1.1.0
       eslint-plugin-svelte:
         specifier: ^2.35.1
         version: 2.35.1(eslint@8.57.0)(svelte@4.2.12)
@@ -108,6 +117,9 @@ importers:
       workbox-window:
         specifier: ^7.0.0
         version: 7.0.0
+      yjs:
+        specifier: ^13.6.14
+        version: 13.6.14
 
 packages:
 
@@ -2794,6 +2806,10 @@ packages:
       is-data-view: 1.0.1
     dev: true
 
+  /dayjs@1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
+    dev: true
+
   /debug@4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
     engines: {node: '>=6.0'}
@@ -3060,6 +3076,11 @@ packages:
       eslint: '>=7.0.0'
     dependencies:
       eslint: 8.57.0
+    dev: true
+
+  /eslint-plugin-only-warn@1.1.0:
+    resolution: {integrity: sha512-2tktqUAT+Q3hCAU0iSf4xAN1k9zOpjK5WO8104mB0rT/dGhOa09582HN5HlbxNbPRZ0THV7nLGvzugcNOSjzfA==}
+    engines: {node: '>=6'}
     dev: true
 
   /eslint-plugin-svelte@2.35.1(eslint@8.57.0)(svelte@4.2.12):
@@ -3765,6 +3786,9 @@ packages:
   /isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
+  /isomorphic.js@0.2.5:
+    resolution: {integrity: sha512-PIeMbHqMt4DnUP3MA/Flc0HElYjMXArsw1qwJZcm9sqR8mq3l8NYizFMty0pWwE/tzIGH3EKK5+jes5mAr85yw==}
+
   /jake@10.8.7:
     resolution: {integrity: sha512-ZDi3aP+fG/LchyBzUM804VjddnwfSfsdeYkwt8NcbKRvo4rFkjhs456iLFn3k2ZUWvNe4i48WACDbza8fhq2+w==}
     engines: {node: '>=10'}
@@ -3888,6 +3912,13 @@ packages:
       prelude-ls: 1.2.1
       type-check: 0.4.0
     dev: true
+
+  /lib0@0.2.93:
+    resolution: {integrity: sha512-M5IKsiFJYulS+8Eal8f+zAqf5ckm1vffW0fFDxfgxJ+uiVopvDdd3PxJmz0GsVi3YNO7QCFSq0nAsiDmNhLj9Q==}
+    engines: {node: '>=16'}
+    hasBin: true
+    dependencies:
+      isomorphic.js: 0.2.5
 
   /lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
@@ -5102,7 +5133,7 @@ packages:
       globrex: 0.1.2
     dev: true
 
-  /tinybase@4.7.1(prettier@3.2.5):
+  /tinybase@4.7.1(prettier@3.2.5)(yjs@13.6.14):
     resolution: {integrity: sha512-YtmE6yg9RgagR1ULxvI//7ladsVv0P5Ase4twBAS7aZQMrexKONJtHo/iH/KP7G5kZzX06fdBdnBKsVPw9RwaQ==}
     hasBin: true
     peerDependencies:
@@ -5148,6 +5179,7 @@ packages:
         optional: true
     dependencies:
       prettier: 3.2.5
+      yjs: 13.6.14
     dev: false
 
   /tinybench@2.6.0:
@@ -5756,6 +5788,12 @@ packages:
       buffer-crc32: 0.2.13
       fd-slicer: 1.1.0
     dev: false
+
+  /yjs@13.6.14:
+    resolution: {integrity: sha512-D+7KcUr0j+vBCUSKXXEWfA+bG4UQBviAwP3gYBhkstkgwy5+8diOPMx0iqLIOxNo/HxaREUimZRxqHGAHCL2BQ==}
+    engines: {node: '>=16.0.0', npm: '>=8.0.0'}
+    dependencies:
+      lib0: 0.2.93
 
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
