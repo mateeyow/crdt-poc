@@ -4,6 +4,7 @@ import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
 import { createClient } from 'redis';
 import * as Y from 'yjs';
+import { WebSocketServer } from 'ws';
 
 const redisClient = createClient();
 
@@ -38,7 +39,18 @@ await redisClient.connect();
 const port = 3000;
 console.log(`Server is running on port ${port}`);
 
-serve({
+const server = serve({
   fetch: app.fetch,
   port,
+});
+const ws = new WebSocketServer({ server });
+
+ws.on('connection', (socket) => {
+  socket.on('error', console.error);
+
+  socket.on('message', (data) => {
+    console.log('received data', data);
+  });
+
+  socket.send('hi');
 });

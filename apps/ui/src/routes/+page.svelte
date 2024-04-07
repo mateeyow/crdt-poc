@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { store, dbPersister, remotePersister, yjsPersister, doc } from '$lib/stores/expenses';
+	import { yDoc } from '$lib/stores/sync';
 	import { onMount } from 'svelte';
 	import dayjs from 'dayjs';
 
@@ -16,7 +17,6 @@
 			description,
 			date: Date.now()
 		});
-		await yjsPersister.save();
 		// await dbPersister.save();
 		// await remotePersister.save();
 
