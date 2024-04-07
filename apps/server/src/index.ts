@@ -2,9 +2,10 @@ import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
+import { Server } from 'http';
 import { createClient } from 'redis';
-import * as Y from 'yjs';
 import { WebSocketServer } from 'ws';
+import utils from 'y-websocket/bin/utils';
 
 const redisClient = createClient();
 
@@ -13,6 +14,7 @@ redisClient.on('error', (err) => console.log('Redis Client Error', err));
 const app = new Hono();
 
 const v1 = new Hono();
+// const doc = new Y.Doc();
 
 v1.use(cors()).use(logger());
 v1.get('/expenses', async (c) => {
@@ -43,14 +45,12 @@ const server = serve({
   fetch: app.fetch,
   port,
 });
-const ws = new WebSocketServer({ server });
 
-ws.on('connection', (socket) => {
-  socket.on('error', console.error);
+const ws = new WebSocketServer({ server: server as Server });
 
-  socket.on('message', (data) => {
-    console.log('received data', data);
-  });
+// ws.on('connection', utils.setupWSConnection);
+ws.on('connection', (ws, req) => {
+  utils.setupWSConnection(ws, req, {});
 
-  socket.send('hi');
+  ws.emit('connection', ws, req);
 });

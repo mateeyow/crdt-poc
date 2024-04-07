@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { store, dbPersister, remotePersister, yjsPersister, doc } from '$lib/stores/expenses';
-	import { yDoc } from '$lib/stores/sync';
 	import { onMount } from 'svelte';
 	import dayjs from 'dayjs';
+	import { WebsocketProvider } from 'y-websocket';
 
 	let expenses = store.getTable('expenses');
 
@@ -17,10 +17,10 @@
 			description,
 			date: Date.now()
 		});
+
 		// await dbPersister.save();
 		// await remotePersister.save();
 
-		console.log('doc.toJSON()', doc.toJSON());
 		target.reset();
 	};
 
@@ -31,12 +31,18 @@
 	};
 
 	onMount(() => {
-		async function loadData() {
-			// await remotePersister.load();
-			// await dbPersister.load();
-		}
+		const wsProvider = new WebsocketProvider('ws://localhost:3000', 'sync-expenses', doc);
 
-		loadData();
+		wsProvider.on('status', (event: any) => {
+			console.log('Status:', event.status, event);
+		});
+
+		// async function loadData() {
+		// 	// await remotePersister.load();
+		// 	// await dbPersister.load();
+		// }
+
+		// loadData();
 		const listener = store.addTableListener('expenses', (store) => {
 			expenses = store.getTable('expenses');
 		});

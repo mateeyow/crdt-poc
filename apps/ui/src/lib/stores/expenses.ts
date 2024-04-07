@@ -19,6 +19,9 @@ export const store = schemaStore.setTablesSchema({
 });
 
 export const yjsPersister = createYjsPersister(store as Store, doc);
+await yjsPersister.startAutoLoad();
+await yjsPersister.startAutoSave();
+
 export const dbPersister = createIndexedDbPersister(store as Store, 'frugal.fund');
 export const remotePersister = createRemotePersister(
 	store as Store,
